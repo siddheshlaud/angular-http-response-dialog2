@@ -1,6 +1,9 @@
 import { Component, VERSION } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { HttpDialogComponent } from './http-dialog/http-dialog.component';
+import { ResponseData } from './model/response-data.model';
+import { PostService } from './post.service';
 
 
 
@@ -14,17 +17,32 @@ export class AppComponent {
   status: string;
   message: string;
 
-  constructor(public dialog: MatDialog) {}
+  private responseSubscription: Subscription;
 
-  openDialog(): void {
+  constructor(public dialog: MatDialog, private postService: PostService) {}
+
+  openDialog(responseData: ResponseData): void {
     const dialogRef = this.dialog.open(HttpDialogComponent, {
       width: '500px',
-      data: {status: this.status, message: this.message}
+      data: {status: responseData.status, message: responseData.message}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+
+
+  sendPost(): void {
+    this.postService.postMessage(this.status, this.message);
+
+    this.responseSubscription = this.postService.responseStatus.subscribe(
+      responseData => {
+        this.openDialog(responseData);
+      }
+    );
+  }
+
+
 
 }

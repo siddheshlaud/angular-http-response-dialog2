@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ResponseData } from '../model/response-data';
+import { ResponseData } from '../model/response-data.model';
 
 @Component({
   selector: 'app-http-dialog',
@@ -13,7 +13,7 @@ export class HttpDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<HttpDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ResponseData) {}
 
-  onNoClick(): void {
+  onOkClick(): void {
     this.dialogRef.close();
   }
 

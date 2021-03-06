@@ -1,4 +1,4 @@
 export interface ResponseData {
-  status: string;
+  status: number;
   message: string;
 }

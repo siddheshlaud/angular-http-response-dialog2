@@ -10,6 +10,7 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import appComponentCss from './app/app.component.css';
 import { AppComponent } from './app/app.component';
 import { HttpDialogComponent } from './app/http-dialog/http-dialog.component';
+import { PostService } from './app/post.service';
 
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
@@ -28,7 +29,7 @@ import { HttpDialogComponent } from './app/http-dialog/http-dialog.component';
   entryComponents: [AppComponent, HttpDialogComponent],
   declarations: [AppComponent, HttpDialogComponent],
   bootstrap: [AppComponent],
-  providers: [
+  providers: [PostService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ]
 })

@@ -1,20 +1,13 @@
-<ol>
-  <li>
+<div>
     <mat-form-field>
-      <mat-label>HTTP Status</mat-label>
+      <mat-label>Post Title</mat-label>
       <input matInput [(ngModel)]="status">
     </mat-form-field>
-  </li>
-    <li>
-    <mat-form-field>
-      <mat-label>HTTP Message</mat-label>
-      <input matInput [(ngModel)]="message">
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Open</button>
-  </li>
-  <!-- <li *ngIf="animal">
-    You chose: <i>{{animal}}</i>
-  </li> -->
-</ol>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Content</mat-label>
+    <input matInput [(ngModel)]="message">
+  </mat-form-field>
+</div>
+<div><button mat-raised-button (click)="sendPost()">SEND POST</button></div>
