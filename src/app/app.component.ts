@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnDestroy, OnInit, VERSION } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { HttpDialogComponent } from './http-dialog/http-dialog.component';
@@ -12,7 +12,7 @@ import { PostService } from './post.service';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
 
   status: string;
   message: string;
@@ -41,6 +41,13 @@ export class AppComponent {
         this.openDialog(responseData);
       }
     );
+  }
+
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.responseSubscription.unsubscribe();
   }
 
 
